@@ -67,21 +67,24 @@ class _HomePageState extends State<HomePage> {
             context,
             MaterialPageRoute(builder: (context) => const AddPage()),
           );
-          // Update the UI
-// get the shared preference instance ()
-          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          if (newItem != null) {
+            // Update the UI
+            // get the shared preference instance ()
+            final SharedPreferences prefs = await SharedPreferences
+                .getInstance();
 
-          // save!!!!!! (String, int, double, boolean, List of String) -> Supported by shared preference
-          // We have array of Map ..
-          // Transform our list of Map into String and save as String (jsonEncode)
-          items.add(newItem);
-          // import 'dart:convert';
-          prefs.setString("todos", jsonEncode(items));
+            // save!!!!!! (String, int, double, boolean, List of String) -> Supported by shared preference
+            // We have array of Map ..
+            // Transform our list of Map into String and save as String (jsonEncode)
+            items.add(newItem);
+            // import 'dart:convert';
+            prefs.setString("todos", jsonEncode(items));
 
-          setState(() {
-            // add the new item/receive inside the List
-            items;
-          });
+            setState(() {
+              // add the new item/receive inside the List
+              items;
+            });
+          }
 
         }, icon: Icon(Icons.add))
 
@@ -94,8 +97,8 @@ class _HomePageState extends State<HomePage> {
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               tileColor: colors[index % 3]  ,
-              title: Text(items[index]["name"]!,),
-              subtitle: Text(items[index]["place"]!),
+              title: Text(items[index]["name"],),
+              subtitle: Text(items[index]["place"]),
               trailing: Icon(Icons.chevron_right),
               onTap: (){
                 Navigator.push(context,
