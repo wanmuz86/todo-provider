@@ -34,7 +34,13 @@ class AddPage extends StatelessWidget {
               print(descEditingController.text);
               print(placeEditingController.text);
 
-              Navigator.pop(context);
+              var newItem = {
+                'name':nameEditingController.text,
+                'desc':descEditingController.text,
+                'place':placeEditingController.text
+              };
+
+              Navigator.pop(context, newItem);
 
             }, child: Text("Add new Item"))
           ],
