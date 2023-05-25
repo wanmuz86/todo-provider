@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DetailPage extends StatelessWidget {
 
   // 1 Create a variable to store the data that's going to be passed by parent
-  final Map<String,String> item;
+  final Map<String,dynamic> item;
 
   // 2 Create constructor for this page
  DetailPage({required this.item});
