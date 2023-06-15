@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'widgets/home.dart';
-
+import 'providers/todo_provider.dart';
+import 'package:provider/provider.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(
+      ChangeNotifierProvider<TodoProvider>(
+
+    create: (_) => TodoProvider(),
+    child: const MyApp(),
+  ));
+
 }
 
 class MyApp extends StatelessWidget {

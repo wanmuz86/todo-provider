@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/providers/todo_provider.dart';
 class AddPage extends StatelessWidget {
   const AddPage({Key? key}) : super(key: key);
 
@@ -9,6 +11,7 @@ class AddPage extends StatelessWidget {
     var nameEditingController = TextEditingController();
     var descEditingController = TextEditingController();
     var placeEditingController = TextEditingController();
+    final providers = Provider.of<TodoProvider>(context);
 
     return Scaffold(
       appBar: AppBar(title: Text("Add page"),),
@@ -34,13 +37,8 @@ class AddPage extends StatelessWidget {
               print(descEditingController.text);
               print(placeEditingController.text);
 
-              var newItem = {
-                'name':nameEditingController.text,
-                'desc':descEditingController.text,
-                'place':placeEditingController.text
-              };
-
-              Navigator.pop(context, newItem);
+              providers.addTodo(nameEditingController.text, placeEditingController.text, descEditingController.text);
+              Navigator.pop(context);
 
             }, child: Text("Add new Item"))
           ],
